@@ -3,5 +3,14 @@
 <div style="margin: 20% auto; width: fit-content; height: 50px;">
 hello 🐼
 <p><a href="./login">login</a></p>
+
+{% if session %}
+<h1>Welcome {{session.userinfo.name}}!</h1>
+<p><a href="{% url 'logout' %}">Logout</a></p>
+{% else %}
+<h1>Welcome Guest</h1>
+<p><a href="{% url 'login' %}">Login</a></p>
+{% endif %}
+
 </div>
 </html>

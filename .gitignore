@@ -1,1 +1,3 @@
 .env
+panda/__pycache__/
+db.sqlite3
