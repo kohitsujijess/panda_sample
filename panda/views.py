@@ -15,6 +15,8 @@ def index(request):
     return render(request, 'index.html')
 
 def login(request):
+    if 'redirect' in request.GET:
+        request.session['redirect'] = request.GET.get('redirect')
     redirect_uri = 'http://localhost:8000/panda/callback'
     return HttpResponseRedirect(
         'https://' + env.get('AUTH0_DOMAIN')
@@ -60,6 +62,7 @@ def callback(request):
         'status': response.status_code,
         'header': header,
         'payload': payload,
+        'redirect': request.session['redirect'],
     }
     return render(request, 'callback.html', params)
 
